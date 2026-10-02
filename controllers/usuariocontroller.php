@@ -1,5 +1,5 @@
 <?php
-class usuarioController {
+class UsuarioController {
     
     public function index() {
         // Aquí llamaríamos al modelo para obtener datos
