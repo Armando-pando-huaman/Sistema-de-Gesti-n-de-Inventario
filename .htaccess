@@ -1,5 +1,5 @@
 RewriteEngine On
-RewriteBase /Sistema-de-Gesti-n-de-Inventario/
+RewriteBase /Sistema-de-Gestion-de-Inventario/
 
 # Redirigir todo a la carpeta public
 RewriteCond %{REQUEST_URI} !^/Sistema-de-Gestion-de-Inventario/public/
