@@ -1,23 +1,23 @@
 <?php
+session_start();
 require_once '../config/database.php';
 
-// Autoload simple de controladores
-$controller = isset($_GET['c']) ? $_GET['c'] : 'Usuario';
-$action = isset($_GET['a']) ? $_GET['a'] : 'index';
+// Autoload de controladores
+$controllerName = isset($_GET['c']) ? ucfirst($_GET['c']) . 'Controller' : 'AuthController';
+$action = isset($_GET['a']) ? $_GET['a'] : 'login';
 
-$controllerFile = "../controllers/" . $controller . "Controller.php";
+$controllerFile = "../controllers/" . $controllerName . ".php";
 
 if (file_exists($controllerFile)) {
     require_once $controllerFile;
-    $controllerClass = $controller . "Controller";
-    $obj = new $controllerClass();
+    $controller = new $controllerName();
     
-    if (method_exists($obj, $action)) {
-        $obj->$action();
+    if (method_exists($controller, $action)) {
+        $controller->$action();
     } else {
-        echo "Acción no encontrada.";
+        die("Acción '$action' no encontrada.");
     }
 } else {
-    echo "Controlador no encontrado.";
+    die("Controlador '$controllerName' no encontrado.");
 }
 ?>
